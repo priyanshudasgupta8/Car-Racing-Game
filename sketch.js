@@ -1,3 +1,4 @@
+// Initializes global variables
 var canvas, backgroundImage;
 
 var gameState = 0;
@@ -9,20 +10,36 @@ var database;
 var form, player, game;
 
 var cars, car1, car2, car3, car4;
+var car1_img, car2_img, car3_img, car4_img;
+var groundImg, trackImg;
 
-function setup(){
-  canvas = createCanvas(displayWidth - 20, displayHeight - 30);
+// Loads in all images
+function preload() {
+  car1_img = loadImage("images/car1.png");
+  car2_img = loadImage("images/car2.png");
+  car3_img = loadImage("images/car3.png");
+  car4_img = loadImage("images/car4.png");
+  groundImg = loadImage("images/ground.png");
+  trackImg = loadImage("images/track.png");
+}
+
+// Sets the game up
+function setup() {
+  canvas = createCanvas(displayWidth - 20, displayHeight - 50);
   database = firebase.database();
   game = new Game();
   game.getState();
   game.start();
 }
 
-
-function draw(){
+// Loops everything
+function draw() {
+  // Sets game state to 1 after 4 players have joined
   if(playerCount === 4){
     game.update(1);
   }
+
+  
   if(gameState === 1){
     clear();
     game.play();
