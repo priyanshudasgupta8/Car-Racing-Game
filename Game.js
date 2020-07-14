@@ -57,13 +57,13 @@ class Game {
 
     // Gets player's info
     Player.getPlayerInfo();
-    
+
     // After all players are in, create the background and positions all players
     if(allPlayers !== undefined){
       background("#434343");
       image(trackImg, 0, -displayHeight * 4, displayWidth, displayHeight * 5);
       //var display_position = 100;
-      
+
       // index of the array
       var index = 0;
 
@@ -84,16 +84,19 @@ class Game {
         cars[index-1].y = y;
 
         if (index === player.index){
+          stroke(10);
+          fill("red");
+          ellipse(x, y, 60, 60);
           //cars[index - 1].shapeColor = "red";
           camera.position.x = displayWidth / 2;
           camera.position.y = cars[index-1].y;
         }
-       
+
         //textSize(15);
         //text(allPlayers[plr].name + ": " + allPlayers[plr].distance, 120,display_position)
       }
     }
-    
+
     // Makes the cars move if that key is pressed
     if(keyIsDown(UP_ARROW) && player.index !== null){
       player.distance +=10
