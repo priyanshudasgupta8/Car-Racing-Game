@@ -1,12 +1,7 @@
 html, body {
-    margin: 0;
-    padding: 0;
-  }
-  canvas{
-    margin-left: 25%;
-    margin-right: 25%;
-    margin-top: 100px;
-    border: 1px solid black;
-  }
-  
-  
+  margin: 0;
+  padding: 0;
+}
+canvas{
+  border: 2px solid black;
+}

@@ -1,4 +1,3 @@
-// Initializes global variables
 var canvas, backgroundImage;
 
 var gameState = 0;
@@ -10,38 +9,41 @@ var database;
 var form, player, game;
 
 var cars, car1, car2, car3, car4;
-var car1_img, car2_img, car3_img, car4_img;
-var groundImg, trackImg;
 
-// Loads in all images
-function preload() {
-  car1_img = loadImage("images/car1.png");
-  car2_img = loadImage("images/car2.png");
-  car3_img = loadImage("images/car3.png");
-  car4_img = loadImage("images/car4.png");
-  groundImg = loadImage("images/ground.png");
-  trackImg = loadImage("images/track.png");
+var track, car1_img, car2_img, car3_img, car4_img;
+
+var carSound;
+
+function preload(){
+  track = loadImage(".track.jpg");
+  car1_img = loadImage("./car1.png");
+  car2_img = loadImage("./car2.png");
+  car3_img = loadImage("./car3.png");
+  car4_img = loadImage("./car4.png");
+  ground = loadImage("./ground.png");
+
+  soundFormats('mp3');
+  carSound = loadSound("sound")
 }
 
-// Sets the game up
-function setup() {
-  canvas = createCanvas(displayWidth - 20, displayHeight - 50);
+function setup(){
+  canvas = createCanvas(displayWidth - 20, displayHeight-30);
   database = firebase.database();
   game = new Game();
   game.getState();
   game.start();
 }
 
-// Loops everything
-function draw() {
-  // Sets game state to 1 after 4 players have joined
+
+function draw(){
   if(playerCount === 4){
     game.update(1);
   }
-
-  
   if(gameState === 1){
     clear();
     game.play();
+  }
+  if(gameState === 2){
+    game.end();
   }
 }
